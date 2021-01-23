@@ -1,0 +1,49 @@
+
+## Español
+
+
+# Jesús Mudarra Luján
+
+
+# Micrófono
+
+á-> &aacute;
+
+é -> &eacute;
+
+í -> &iacute;
+
+ó -> &oacute;
+
+ú -> &uacute;
+
+ñ -> &ntilde;
+
+ü -> &uuml;
+
+Si quisieramos indicar una cantidad en euros:
+
+&euro;200
+
+
+"<" se coloca &lt;
+
+">" se coloca &gt;
+
+& se escribe como &amp;
+
+
+A continuación te muestro un diagrama de dispersión cuyo título contiene una palabra con acento:
+
+
+```{r}
+#Cargamos la información correspondiente a los Latinos
+Latinos <- read.csv(file = "./data/Latinos.csv", header = TRUE, sep = ",", dec = ".", row.names = 1)
+
+#Diagrama de Dispersión con gráficos básicos de R
+plot(Latinos$Tiempo ~ Latinos$Edad,
+     xlab = "Edad", ylab = "Tiempo",
+     main = "Dispersión Tiempo vs Edad")
+
+```
+

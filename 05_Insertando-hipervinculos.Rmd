@@ -1,0 +1,9 @@
+
+### Hipervínculo
+http://www.nytimes.com
+
+### Texto con hipervínculo
+[Este es el link en el que se encuentra la información acerca de RMarkdown](https://rmarkdown.rstudio.com/lesson-9.html)
+
+### Imagen con hipervínculo
+[![](./data/hex-rmarkdown.png)](https://bookdown.org/yihui/rmarkdown/)

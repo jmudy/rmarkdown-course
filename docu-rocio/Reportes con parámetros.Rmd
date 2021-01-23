@@ -1,0 +1,89 @@
+---
+output:
+  html_document: default
+
+params:
+  Pais: Canadá
+--- 
+
+<center>
+
+<span style="color:green"> **_Principales Exportaciones hacia `r params$Pais` en el 2018_** </span>
+======================
+
+### Elaborado por: Roc&iacute;o Ch&aacute;vez 
+
+#### Agosto 31, 2020 
+
+##### Mapa de Rectángulos de los montos de exportación por sector desde <span style="color:green"> **_México_** </span> hacia <span style="color:orange">**_`r params$Pais`_** </span> 
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=6.5, fig.height=5.5,  fig.align='center'}
+
+library (dplyr) #Util en el filtrado de las bases de datos
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+#Leemos el archivo con la informacion
+Exportaciones <- read.csv(file="Exportaciones Mexico varios paises 2018.csv", header=TRUE, sep=",", dec=".")
+
+Pais_buscado <- filter(Exportaciones, Exportaciones$Pais == params$Pais)
+Pais_buscado
+  
+library(ggplot2)
+library(treemapify) #Instalar con install.packages("treemapify", dependencies=TRUE)
+
+
+ggplot(Pais_buscado, aes(area = Gross_Export, fill = Sector, subgroup = Sector)) +
+  geom_treemap() +
+  geom_treemap_subgroup_text( fontface = "italic",  colour="white") +
+  scale_fill_brewer(palette = "Paired") +
+  labs(title="Principales Exportaciones México 2018")
+
+#Puedes ver mas paletas de colores en #https://www.datanovia.com/en/blog/the-a-z-of-rcolorbrewer-palette/
+
+```
+
+<br>
+<br>
+<br>
+
+##### Diagrama de Pareto de los diferentes materiales exportados por cada sector de la Industria desde <span style="color:green"> **_México_** </span> hacia <span style="color:orange">**_`r params$Pais`_** </span> 
+
+
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=6.5, fig.height=5.5,  fig.align='center'}
+
+sectores <- table(Pais_buscado$Sector)  
+
+sectores
+
+library(qcc) #Instalar con install.packages("qcc", dependencies=True) en la consola
+
+pareto.chart(sectores, col=rainbow(length(sectores)), 
+             main="Cantidad de Materiales Exportados por Sector")
+
+
+```
+
+
+<br>
+<br>
+<br>
+
+
+### Autor: 
+
+### Roc&iacute;o Ch&aacute;vez 
+
+
+```{r, echo=FALSE, out.width ="20%"}
+knitr::include_graphics("C:/Users/rocio/fotografia linkedin 2019.jpg")
+```
+
+
+### rociochavezml.com
+
+[Visita mi Página de Internet "Aprende Ciencia de Datos con Roc&iacute;o Ch&aacute;vez" dando clic aquí  ](https://www.rociochavezml.com)
+
+</center>

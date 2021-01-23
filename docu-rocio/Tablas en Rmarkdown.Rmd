@@ -1,0 +1,36 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+```{r message=FALSE, echo=FALSE, results='asis', warning=FALSE}
+library(knitr) #Instalar con install.packages("knitr", dependencies=TRUE) en la consola
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+#Cargamos el archivo Latinos que obtuvimos en el video "Filtros en R"
+Latinos <- read.csv(file="Latinos.csv", header=TRUE, sep=",", dec=".")
+
+kable( Latinos , caption = "Latinos en el Maratón",
+       align = c('l', 'c', 'r', 'r', 'c', 'l'),
+       col.names = c("Corredor","Lugar en que llego","Sexo","Edad","Pais","Tiempo"),
+       digits = 1,
+       format.args = list( decimal.mark = ".")
+      )
+
+```
+
+<center>
+
+### Creando Tablas desde Cero 
+
+</center> 
+
+| Curso | Idioma   | Precio |
+| :------ |:---------:| ------:|
+| Lenguaje R| Inglés | 100 USD    |
+| Python| Español    | 90 USD   |
+| SQL | Francés | 86 USD   |

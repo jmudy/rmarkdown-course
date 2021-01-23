@@ -1,0 +1,70 @@
+# Título 1 Colocamos un solo hashtag
+
+
+
+## Título con dos hashtags
+### Título con tres hashtags
+#### Título con cuatro hashtags
+##### Título con cinco hashtags
+###### Título con seis hashtags
+
+Otra forma de hacerlo para los dos primeros tamaños de encabezados es:
+
+Título 1 indicado con signos "="
+========
+
+
+Título 2 indicado con signos "-"
+--------
+
+
+**Colocamos dos asteriscos antes y despues del texto que queremos en negritas**
+
+__Otra forma de poner el texto en negritas es utilizando dos guiones bajos antes y despues del mismo__
+
+
+*Para que esten en Italicas, colocar solamente un asterisco*
+
+_O bien, colocar un solo guion antes y despues del texto_
+
+
+
+**_Si queremos utilizar negritas y cursiva, colocar dos asteriscos y un guion bajo al principio y un guion bajo seguido de dos asteriscos al final_**
+
+
+~~Para tachar un texto, utilizamos dos tildes antes y despues~~
+
+
+Para dejar un renglon en blanco, es decir, un salto de linea, presionamos dos veces la tecla enter al terminar el parrafo
+
+
+Presiona enter dos veces para que exista un renglon en blanco entre parrafos
+
+
+<span style="color:red">También puedes agregar color al texto. Esto tiene "span style="color:red""</span>
+
+<span style="color:blue">Esto tiene "span style="color:blue""</span>
+
+
+Para colocar un superindice, hazlo con el simbolo "^" antes y despues de este: X^2^
+
+Si en lugar de un superindice necesitas un subindice, coloca el simbolo "~" en lugar de "^": X~2~
+
+
+Existen diferentes formas de crear listas:
+
+- Colocando un
+- Guion
+- Al inicio
+
+1. Colocando
+2. Un numero
+3. Seguido de
+4. Un punto
+
+* O bien,
+* Colocando
+* Un asterisco
+* Al inicio
+* De cada item
+

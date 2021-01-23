@@ -1,0 +1,15 @@
+---
+output:
+  word_document: default
+  pdf_document: default
+  html_document: default
+---
+
+![](C:/Users/rocio/fotografia linkedin 2019.jpg)
+
+
+```{r, echo=FALSE, out.width ="20%", fig.align='center'}
+
+knitr::include_graphics("C:/Users/rocio/Carpeta de pruebas/hex-rmarkdown.png")
+
+```

@@ -1,0 +1,8 @@
+
+![Icono de RMarkdown](./data/hex-rmarkdown.png)
+
+
+```{r, echo=FALSE, out.width="20%", fig.align='center'}
+knitr::include_graphics("./data/beer.jpg")
+```
+

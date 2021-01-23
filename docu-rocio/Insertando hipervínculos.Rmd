@@ -1,0 +1,12 @@
+
+### Hipervinculo sencillo
+http://www.nytimes.com 
+
+### Texto con hipervinculo
+[Este es el link en el que se encuentra la información acerca de RMarkdown](https://rmarkdown.rstudio.com/lesson-9.html)
+
+### Imagen con hipervinculo
+[![](C:/Users/rocio/Carpeta de pruebas/hex-rmarkdown.png)](https://bookdown.org/yihui/rmarkdown/)
+
+### Agregando un link automático a un correo electrónico
+<rociochavezmx@yahoo.com>

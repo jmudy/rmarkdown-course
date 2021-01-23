@@ -1,0 +1,96 @@
+
+**Opciones de salida de los chunks**
+
+Salida por defecto
+
+```{r}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+
+```{r}
+z = 0:10
+x = 1 + z
+mean(x)
+min(x)
+max(x)
+```
+
+Opcion echo
+
+echo=FALSE evita que el código se muestre en el documento
+
+```{r}
+z = 0:10
+x = 1 + z
+mean(x)
+min(x)
+max(x)
+```
+
+
+Opción message
+message=FALSE Evita que se muestren los mensajes producidos por el código R
+Salida sin opciones
+```{r}
+library(dplyr)
+```
+
+
+Opción warning
+warning=FALSE Evita que se muestren los mensajes de advertencia producidos por el código R
+salida sin opciones
+```{r}
+sqrt((-3):3)
+```
+
+
+Opción results
+results permite indicar cómo debe aparecer el resultado de la ejecución del código en el documento final.
+results=hide No muestra el resultado en el documento final
+results=hold Muestra todos los resultados al final del documento
+```{r}
+z = 0:10
+x = 1+z
+mean(x)
+min(x)
+max(x)
+```
+
+
+Chunks dentro de parrafos o "en modo línea"
+La raiz cuadrada de 25 es `r sqrt(25)` y la de 9 es `r sqrt(9)`
+
+```{r}
+plot(iris[,3:4], main = "Pétalos de iris",
+     xlab = "Largo", ylab = "Ancho", pch = 18)
+```
+
+Modificando la altura y la anchura del gráfico en R en pulgadas con las opciones fig.height y fig.width:
+
+```{r, fig.height=4, fig.width=4}
+# fig.height=4, fig.width=4
+plot(iris[,3:4], main = "Pétalos de iris",
+     xlab = "Largo", ylab = "Ancho", pch = 18)
+```
+
+Para reducir en un tanto por ciento el gráfico original
+
+```{r, out.width='40%'}
+# out.width='40%'
+plot(iris[,3:4], main = "Pétalos de iris",
+     xlab = "Largo", ylab = "Ancho", pch = 18)
+```
+
+Utilizando la opción fig.align para alinear los gráficos con respecto al texto
+
+```{r, out.width='40%', fig.align='center'}
+# out.width='40%'
+plot(iris[,3:4], main = "Pétalos de iris",
+     xlab = "Largo", ylab = "Ancho", pch = 18)
+```
+
+
+
+
+

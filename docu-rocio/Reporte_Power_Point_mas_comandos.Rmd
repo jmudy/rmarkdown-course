@@ -1,0 +1,330 @@
+---
+output:
+  powerpoint_presentation:
+    reference_doc: Plantilla_Modificada.pptx
+    slide_level: 3 #Indica que un nuevo slide comienza cuando se tienen 3 símbolos numeral
+---
+
+
+
+**_Ejemplo de Creación de una Presentación _**
+=======================
+
+###
+
+> Este documento de tipo PowerPoint fué  
+> **_generado automáticamente_** utilizando  
+> el paquete **_RMarkdown_** 
+
+### Contenido {#Contenido}
+
+* Tabla del Maratón de NY
+  
+* Diferentes Gráficos
+  * Gráfico de Barras
+  * Diagrama de Pareto
+  * Nubes de Palabras
+  * Otros
+  
+* Mi sitio Web
+  
+  
+
+### Maratón de NY
+
+
+```{r, echo=FALSE, results='hide', results='asis', message=FALSE, echo=FALSE, warning=FALSE}
+
+library(knitr) #Instalar con install.packages("knitr", dependencies=TRUE) en la consola
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+#Cargamos el archivo Latinos que obtuvimos en el video "Filtros en R"
+Latinos <- read.csv(file="Latinos.csv", header=TRUE, sep=",", dec=".")
+
+kable( Latinos[1:6, ], 
+       align = c('l', 'c', 'r', 'r', 'c', 'l'),
+       col.names = c("Corredor","Lugar en que llego","Sexo","Edad","Pais","Tiempo"),
+       digits = 1,
+       format.args = list( decimal.mark = "."),
+       caption = "Este es un ejemplo de creación de Tablas"
+      )
+
+```
+
+
+
+### Histograma
+
+::::{.columns}
+::: {.column}
+
+Este slide contiene una nota para el orador  
+
+<br>
+<br>
+
+Para regresar al Contenido presiona [aquí](#Contenido)
+
+:::
+:::{.column}
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=4.5, fig.height=3.5,  fig.align='center'}
+
+library(ggplot2)
+ggplot(Latinos, aes(x = Tiempo)) + 
+       geom_histogram(bins=10, fill= rainbow(10), col="black") + 
+       labs(title="Tiempos Registrados", x="Tiempo", y="Frecuencias") +
+       theme_classic() +
+       theme(plot.title = element_text(hjust = 0.5))  #Con ésta linea centramos el título
+
+
+
+```
+
+:::
+::::
+
+:::notes
+Esta es una nota para el orador
+:::
+
+
+
+### Mostrando dos Gráficos en un Slide
+
+:::::::::::::::: {.columns}
+::: {.column}
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=4.5, fig.height=4.5,  fig.align='center'}
+
+#Grafico de Burbujas
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+
+#Cargamos el archivo llamado Corredores Latinos por Pais
+Corredores_Pais<- read.csv(file="Corredores Latinos por Pais.csv", header=TRUE, sep=",", dec=".") 
+
+#Revisamos que se haya cargado bien la informacion
+head(Corredores_Pais)
+
+library(faraway)  #Instalar con install.packages("faraway")
+
+symbols(Corredores_Pais$Pais, Corredores_Pais$total_por_Pais, circles=Corredores_Pais$total_por_Pais, bg=rainbow(12), main= "Corredores por Pais",
+        xlab="Pais", ylab="Corredores")
+#text(Corredores_Pais$Pais, Corredores_Pais$total_por_Pais, Corredores_Pais$Pais, cex=0.8)
+text(Corredores_Pais$Pais, Corredores_Pais$total_por_Pais, cex=0.8)
+
+```
+:::
+::: {.column}
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=4.5, fig.height=4,  fig.align='center'}
+
+#Grafico circular
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+#### Ejemplo #1
+Corredores_Pais <- read.csv(file="Corredores Latinos por Pais.csv", header=TRUE, 
+                        sep=",", dec=".", row.names = 1) 
+
+#Con ggplot2
+library(ggplot2)
+
+Pais <- Corredores_Pais$Pais
+
+ggplot(Corredores_Pais, aes(x="", y=Corredores_Pais$total_por_Pais, fill=Pais)) +
+       geom_bar(stat = "identity", color="black" ) + 
+       coord_polar("y", start= 0) + 
+       geom_text(aes(label = Corredores_Pais$total_por_Pais), position = position_stack(vjust = 0.5), #Position es para las cantidades
+                 color = "blue")+
+       labs(title="Corredores Latinos por Pais") +
+       theme_void()
+  
+```
+:::
+::::::::::::::::
+
+
+
+### Mapa de Rectángulos
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=6.5, fig.height=4,  fig.align='center'}
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+#Leemos el archivo con la informacion
+Exportaciones <- read.csv(file="Exportaciones Mexico varios paises 2018.csv", header=TRUE, sep=",", dec=".")
+
+
+library(ggplot2)
+library(treemapify) #Instalar con install.packages("treemapify", dependencies=TRUE)
+
+ggplot(Exportaciones, aes(area = Gross_Export, fill = Pais, subgroup = Pais, subgroup2=Sector)) +
+  geom_treemap() +
+  geom_treemap_subgroup2_border(colour="white", size = 2) +
+  geom_treemap_subgroup_text( place="center", fontface = "italic",  colour="gray27") +
+  geom_treemap_subgroup2_text(colour="gray")+
+  scale_fill_manual(values=c("steelblue4", "mediumpurple4", "purple","slateblue")) +
+  labs(title="Principales Exportaciones México 2018")
+ 
+```
+
+
+
+### Diagrama de Pareto
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=5.5, fig.height=5.5,  fig.align='center'}
+
+
+#Indicando el directorio en donde se encuentra el archivo a cargar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea/Reportes Automaticos en R/Bases de datos")
+
+productos <- read.csv(file="Venta de Productos.csv", header=TRUE, 
+                        sep=",", dec=".") #En éste archivo no tengo nombres en las filas
+
+head(productos)
+
+productos_vendidos <- table(productos)  #Obtiene las veces en que fue vendido cada producto, es decir la tabla de frecuencias
+
+productos_vendidos
+
+
+library(qcc) #Instalar con install.packages("qcc") desde la consola
+
+pareto.chart(productos_vendidos, col=rainbow(length(productos_vendidos)), main="Diagrama de Pareto")
+
+
+```
+
+
+### Indices Bursátiles Enero - Abril 2020
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=7.5, fig.height=5,  fig.align='center'}
+
+#Acomodando varios gráficos en un mismo lugar
+
+#Para tener una ventana de 2 filas con 2 columnas
+par(mfrow = c(2,2))
+
+#Indicamos la carpeta en la que vamos a trabajar
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Videos para youtube/Bases de Datos")
+
+#Leemos el archivo a analizar 
+retornos <- read.csv(file="indices bursatiles retornos 2020.csv", header=TRUE, sep=",", dec=".")
+
+#Creamos un objeto de tipo eXtensible Time Series
+library(xts) #instalar con install.packages("xts", dependencies=TRUE) en la consola
+
+#Creamos un objeto de tipo eXtensible Time Series
+retornos_xts <- xts(retornos[,-1], order.by = as.Date(retornos[,1], format = "%m/%d/%Y"))
+
+#Escogemos los colores que vamos a utilizar para las líneas de los gráficos
+arcoiris <- rainbow(ncol(retornos_xts))
+
+#Si quisiéramos graficar todos los índices
+plot.xts(retornos_xts, col=arcoiris, 
+         main="Todos los Índices",
+         cex=0.5, cex.axis=0.7, major.ticks = "days", 
+         legend.loc = "bottomleft")
+
+#Graficamos los retornos de los índices FCHI, GDAXI e IBEX
+plot.xts(retornos_xts[,1:3], col=arcoiris, 
+         main="FCHI, GDAXI e IBEX",
+         cex=0.5,  cex.axis=0.7, major.ticks = "days",
+         legend.loc = "bottomleft")
+
+#Graficamos los retornos del índice NDX
+plot.xts(retornos_xts[,4], col="blue", 
+         main="NDX",
+         cex=0.5, cex.axis=0.7, major.ticks = "days", 
+         legend.loc = "bottomleft")
+
+
+#Graficamos los retornos de los índices N225 y STI
+plot.xts(retornos_xts[,5:6], col=c("orange", "green"), 
+         main="N225 y STI",
+         cex=0.5, cex.axis=0.7, major.ticks = "days", 
+         legend.loc = "bottomleft")
+
+
+
+```
+
+
+### Comentarios acerca de Vinos
+
+```{r, echo=FALSE, results='hide', message=FALSE, echo=FALSE, warning=FALSE, fig.width=5, fig.height=3.5,  fig.align='center'}
+
+
+#Este paquete nos ayuda a hacer mineria de textos
+library(tm)  #Instalar desde la consola con install.packages("tm"). 
+
+setwd("C:/Users/rocio/Escritorio2/Pavillion-Rocio/Cursos impartidos en linea")
+
+comentarios <- read.csv("./Reportes Automaticos en R/Bases de datos/opiniones acerca de vinos.csv", 
+                        header=TRUE, sep=",", dec=".", row.names = 1)
+palabras <- VCorpus(VectorSource(comentarios$description))
+
+palabras <- tm_map(palabras, content_transformer(tolower)) 
+palabras <- tm_map(palabras, removePunctuation)
+palabras <- tm_map(palabras, removeWords, stopwords("english"))
+
+
+library(RColorBrewer) #Instalar desde la consola con install.packages("RcolorBrewer")
+
+colores = brewer.pal(8, "Dark2")
+
+
+#_____________________________
+#Nube de Palabras con ggplot2
+
+library(ggplot2)
+library(ggwordcloud)
+
+#Creando un dataframe con el conteo de las palabras
+conteo_palabras <- TermDocumentMatrix(palabras)
+conteo_palabras <- as.matrix(conteo_palabras)
+conteo_palabras <- sort(rowSums(conteo_palabras),decreasing=TRUE)
+conteo_palabras <- data.frame(palabra = names(conteo_palabras), cantidad=conteo_palabras)
+head(conteo_palabras, 20)
+
+ggwordcloud(conteo_palabras$palabra, conteo_palabras$cantidad, scale=c(2.6,0.3), random.order=FALSE, 
+            max.words=75, colors=colores) 
+
+```
+
+
+
+
+### Autor
+
+:::::::::::::::: {.columns}
+::: {.column}
+
+Rocío Chávez  
+
+<br>  
+<br>  
+
+
+Visita mi Página de Internet "Aprende Ciencia de Datos con Rocío Chávez" [dando clic aquí  ](https://www.rociochavezml.com)
+
+:::
+::: {.column}
+
+
+```{r, echo=FALSE, out.width = "5%", fig.align='center'}
+
+knitr::include_graphics("C:/Users/rocio/fotografia linkedin 2019.jpg")
+
+```
+
+::: 
+::::::::::::::::
+
+
