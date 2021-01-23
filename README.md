@@ -1,1 +1,1 @@
-# rmarkdown-course
+# RMarkdown-course
