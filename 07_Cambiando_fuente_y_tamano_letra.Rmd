@@ -1,0 +1,69 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# Cambiando el Tipo y el Tipo de Letra en un documento PDF
+
+## Tamaños de letra
+
+&nbsp;
+
+\tiny tiny
+
+&nbsp;
+
+\scriptsize scriptsize
+
+&nbsp;
+
+\footnotesize footnotesize
+
+&nbsp;
+
+\small small
+
+&nbsp;
+
+\normalsize normalsize
+
+&nbsp;
+
+\large large
+
+&nbsp;
+
+\huge huge
+
+&nbsp;
+
+\Huge Huge
+
+&nbsp;
+
+
+### Combinando diferentes Tamaños de Letra en un párrafo
+
+\tiny En este capítulo, \normalsize los resultados de la comparación de la \huge agrupación de genes \normalsize realizada en las cinco bases de datos de expresión génica de S. cerevisiae durante el proceso del ciclo celular.
+
+
+## Tipos de letra
+
+\textrm{textrm}
+
+&nbsp;
+
+\textsf{textsf}
+
+&nbsp;
+
+\texttt{texttt}
+
+&nbsp;
+
+
+### Combinando diferentes Tipos de Letra en un párrafo
+
+\huge \textsf{En general,} \normalsize esta comparación se puede hacer visualmente \texttt{o mediante el cálculo de la distancia} entre las neuronas donde los genes están agrupados por el algoritmo SOM en las diferentes bases de datos.
+
